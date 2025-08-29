@@ -1,0 +1,76 @@
+:root {
+  --color-green: rgb(0, 128, 0);
+  --color-lite-green: #28a745;
+  --main-font: "Montserrat", sans-serif;
+  --color-black: #434343;
+  --header-color: #f8f9fa;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+header {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.about-section {
+  padding: 50px 100px;
+  font-family: var(--main-font);
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #212529;
+  line-height: 1.2;
+}
+
+.about-text p {
+  padding-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+}
+
+.about-text ul {
+  margin-bottom: 5rem;
+  margin-left: 30px;
+}
+
+
+.for-more-btn {
+  border: 2px solid #070707;
+  /* display: inline-block; */
+  width: 220px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  background-color: #ebebeb;
+  border-radius: 5px;
+}
+
+.for-more-btn a {
+  padding: 5px 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+}
+
+.for-more-btn:hover {
+  background-color: #bbb;
+}
+
+.subscribe-container {
+  margin-top: 0px;
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 30px 60px;
+  }
+}

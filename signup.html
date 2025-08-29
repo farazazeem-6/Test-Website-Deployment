@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Tickets Online | Baloch Transport Bus Service</title>
+    <!-- Fevicon Icon  -->
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <!-- Google Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,200;0,400;0,700;0,800;0,900;1,300;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Remix Icon Link  -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- Box Icon Link  -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <!-- BootStrap Link  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <!-- Date Picker Link  -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Bootstrap Datepicker CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <!-- Link CSS  -->
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="signup.css">
+
+</head>
+
+<body>
+
+    <!-- Header Section  -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="">
+
+            </a>
+
+        </div>
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="index.html"><i class="fa-solid fa-house-chimney"></i>
+                        <span>Home</span></a>
+                </li>
+                <li><a href="about.html"><i class="fa-solid fa-users"></i> <span>About
+                            Us</span></a></li>
+                <li><a href="contact.html"><i class="fa-solid fa-envelope"></i>
+                        <span>Contact
+                            Us</span></a></li>
+                <li id="loginSignup-li"><a href="login.html" class="active"><i
+                            class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <span>Login/Signup</span>
+                    </a></li>
+
+
+            </ul>
+        </div>
+
+        <div class="cargo-container">
+            <a href="#"><i class="fa-solid fa-truck"></i> <span>Cargo Tracking</span></a>
+        </div>
+        <div class="ham-burger-btn">
+            <a href="#"><i class="ri-menu-line"></i></a>
+        </div>
+    </header>
+
+
+
+    <!-- Login Section -->
+    <div class="login-container">
+        <div class="row" id="login-row">
+            <div class="col-md-7 order-1 order-md-2" id="side-img">
+                <img src="asset 20.png" alt="" class="img-fluid">
+
+            </div>
+
+            <!-- Login Heading Column -->
+            <div class="col-md-5 order-2 order-md-1 login-details-2" id="login-details">
+
+                <h3 style="font-family: 'Montserrat', sans-serif;">Welcome to Baloch Transport Services Sign Up</h3>
+                <p>Create an account to book tickets, manage your travel, and enjoy seamless transportation
+                    services
+                    with us</p>
+                <div class="forms-container">
+                    <nav class="navbar">
+                        <a href="#" onclick="loginWithGoogle()" class="nav-item" id="google-btn" data-tooltip="Google"
+                            style="--delay: 1">
+                            <div class="icon google-icon"></div>
+                        </a>
+
+                        <a href="#" onclick="loginWithFacebook()" class="nav-item" data-tooltip="Facebook"
+                            style="--delay: 2">
+                            <div class="icon facebook-icon"></div>
+                        </a>
+
+                        <a href="#" id="github-login" class="nav-item" data-tooltip="GitHub" style="--delay: 3">
+                            <div class="icon github-icon"></div>
+                        </a>
+                    </nav>
+
+                </div>
+                <button class="phonemodalBtn" style="padding: 15px 20px;">Continue with phone no</button>
+                <button class="log-in-btn" id="register-btn">Register with email</button>
+
+                <p class="create-acc-text">Already have an account?<span><a href="login.html"
+                            style="color: #28a745; text-decoration: underline;">Sign
+                            In</a></span></p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Contact Us  -->
+
+    <div class="subscribe-container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="subscribe-text">
+                    <h2>SUBSCRIBE TO OUR </h2>
+                    <h1>NEWSLETTER</h1>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="subscribe-mail">
+                    <form id="subscribe-form">
+                        <input type="email" placeholder="Enter email address" name="email" required
+                            id="subscribe-email">
+                        <input type="submit" value="SUBMIT">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer Section  -->
+
+    <footer>
+        <div class="row">
+            <div class="col-md-4 column-1">
+                <h3>About Baloch Transport Service</h3>
+                <p>The Baloch Transport Bus Service is one of the largest passenger transport company of
+                    Pakistan with
+                    an enviable passenger base and track record, operating across Punjab, Sindh, Khyber
+                    Pakhtunkhwa and
+                    Balochistan. Founded in 1955 by (Late) Ahmad Nawaz Khitran.</p>
+            </div>
+            <div class="col-md-2 column-2">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About Us</a></li>
+                    <li><a href="">Contact Us</a></li>
+                    <li><a href="">Data Privacy and Policy</a></li>
+                    <li><a href="">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 column-3">
+                <h3>Download App</h3>
+                <div class="social-img">
+                    <a href="https://apps.apple.com/us/app/baloch-transport/id1514959195" target="_blank">
+                        <img src="AppleStore-Image.svg" alt="">
+
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.brikmas.balochtransport&hl=en"
+                        target="_blank">
+                        <img src="PlayStore-Image.svg" alt="">
+
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-md-3 column-4">
+                <h3>Social Links</h3>
+                <div class="social-links">
+                    <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- Last footer  -->
+    <div class="copyright-footer">
+        <p>Copyright © 1955 – 2025 Baloch Transport Services. All rights reserved.
+
+        </p>
+    </div>
+
+    <!-- Modal  -->
+
+
+    <div id="forget-modal" class="forget-modal">
+        <div class="modal-data">
+            <div class="cross-img">
+                <img src="remove.png" alt="">
+            </div>
+            <div class="forget-text-container">
+                <h2>🎉 Subscription Confirmed</h2>
+                <p>Thank you for subscribing! Welcome to Baloch Transports.</p>
+                <a href="index.html">
+                    <button class="send-email-btn">EXPLORE MORE</button>
+
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Register with email Modal  -->
+
+
+    <div class="form-overlay-div">
+
+        <form id="form-no-2" class="signup-form">
+            <div class="close-signupBtn"><img src="remove.png" alt=""></div>
+
+            <h4>Signup with email</h4>
+            <div class="row">
+                <div class="col-lg-12">
+                    <label for="email">Email</label>
+                    <input style="outline: none; box-shadow: none; border: 1px solid #28a745;" type="text"
+                        class="form-control" placeholder="Enter Email" id="email">
+                    <div class="email-error"></div>
+                </div>
+
+                <div class="col-lg-12">
+                    <label for="password">Password</label>
+                    <input style="outline: none; box-shadow: none; border: 1px solid #28a745;" type="text"
+                        class="form-control" placeholder="Enter Password" id="password">
+                    <div class="password-error2"></div>
+                </div>
+
+                <div class="col-lg-12">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input style="outline: none; box-shadow: none; border: 1px solid #28a745;" type="text"
+                        class="form-control" placeholder="Confirm Password" id="confirm-password">
+                    <div class="confirm-password-error"></div>
+                </div>
+            </div>
+            <button class="log-in-btn signup-btn" id="signup-btn">Register</button>
+        </form>
+
+    </div>
+
+    <!-- Phone Modal  -->
+
+    <div class="phoneModal-overlay">
+        <div class="phoneModal">
+            <div class="close-phonebtn"><img src="remove.png" alt=""></div>
+            <h2>Phone Verification</h2>
+            <p style="padding-bottom: 20px;" class="ver-info">We'll send you a verification code</p>
+
+            <form class="form-phone-no">
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" maxlength="11"
+                        required>
+                    <div class="login-phone-error"></div>
+                </div>
+                <div id="recaptcha-container"></div>
+                <button type="" class="send-otp-btn" id="phone-modal-btn">Send OTP</button>
+            </form>
+
+            <form class="form-otp">
+                <div class="form-group">
+                    <label for="otp">OTP</label>
+                    <input type="text" id="otp" name="otp" placeholder="Enter OTP" maxlength="6" required>
+                    <div class="otp-error"></div>
+                </div>
+
+                <button type="" class="verify-otp-btn" id="phone-modal-btn">Verify OTP</button>
+                <button class="resend-button" id="resendBtn" onclick="resendCode()">
+                    <span id="resendText">Resend code</span>
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <script src="/home.js"></script>
+    <script type="module" src="/login.js"></script>
+    <script type="module" src="/signup.js"></script>
+
+</body>
+
+</html>

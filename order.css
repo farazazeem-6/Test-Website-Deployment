@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+:root {
+    --color-green: rgb(0, 128, 0);
+    --color-lite-green: #28a745;
+    --main-font: "Montserrat", sans-serif;
+    --color-black: #434343;
+    --header-color: #f8f9fa;
+}
+
+.profile-right {
+    border-left: 1px solid #ebebeb;
+    height: 400px;
+    padding-left: 30px;
+}
+
+@media(max-width:991px) {
+    .profile-right {
+        margin-top: 50px;
+    }
+}
+
+@media(max-width:730px) {
+    .profile-container {
+        padding: 50px 20px;
+    }
+}

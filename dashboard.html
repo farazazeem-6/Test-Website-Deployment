@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Tickets Online | Baloch Transport Bus Service</title>
+    <!-- Fevicon Icon  -->
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <!-- Google Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,200;0,400;0,700;0,800;0,900;1,300;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Remix Icon Link  -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- Box Icon Link  -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <!-- BootStrap Link  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+    <!-- Date Picker Link  -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Bootstrap Datepicker CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <!-- Link CSS  -->
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+        <div class="" id="sidebar">
+            <div class="logo">
+                <img src="/logo.png" alt="" srcset="">
+            </div>
+
+            <div class="button">
+                <button>📍 Manage Routes</button>
+            </div>
+        </div>
+        <div class="" id="main-section">
+            <div id="dash-header">
+
+                <a href="index.html" id="switch-user">Switch to User</a>
+
+
+
+                <div class="custom-dropdown">
+                    <button class="custom-dropdown-toggle" id="customDropdownBtn">
+                        <span class="first-name"><i style="padding-right: 4px;"
+                                class="fa-solid fa-user"></i>User</span><span style="padding-left: 5px;"> <i
+                                class="fa-solid fa-caret-down"></i></span>
+                    </button>
+                    <ul class="custom-dropdown-menu" id="customDropdownMenu">
+                        <li style="font-family: 'Montserrat', sans-serif;"><a href="#" style="font-weight: 400;"
+                                id="log-out">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <hr>
+            <div class="route-container">
+                <div class="heading">
+                    <h4>All Routes</h4>
+                </div>
+                <div class="add-route">
+                    <button id="add-route-btn">Add Route</button>
+                </div>
+            </div>
+
+            <div class="cards-container">
+
+                <div class="no-bus-text">
+                    <img src="bus (1).png" alt="" width="170px">
+                    <p style="font-weight: bold;">No Bus Available</p>
+                    <p>Add new routes of buses.
+
+                    </p>
+
+                </div>
+
+
+                <!-- <div class="card-1">
+                    <div class="card-img-section">
+                        <img src="/images/bus (1).png" alt="">
+                    </div>
+
+                    <div class="main-content">
+                        <h2 class="service-title">Lahore to Multan</h2>
+
+                        <div class="service-details">
+                            <span class="departure-city">Bahawalpur</span>
+                            <span class="destination-city">Lahore</span>
+                            <span class="bus-type">In-person</span>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-edit"> <span><i
+                                        class="fa-solid fa-pen-to-square"></i></span>Edit</button>
+                            <button class="btn btn-view"> <span><i class="fa-regular fa-eye"></i></span>View</button>
+                            <button class="btn btn-delete"> <span><i
+                                        class="ri-delete-bin-line"></i></span>Delete</button>
+                        </div>
+                    </div>
+                </div> -->
+
+
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Add Route Modal  -->
+
+    <div class="route-modal-overlay">
+        <div class="route-modal-container">
+            <div class="travel-info">
+
+                <div class="travel-fields">
+                    <h4>Route Details:</h4>
+                    <div class="row" id="row-1">
+                        <div class="col-md-6">
+                            <label for="departure">Departure City</label>
+
+
+                            <div class="select-with-icon">
+                                <i class="fa-regular fa-circle select-icon"></i>
+                                <div class="dropdown-container">
+                                    <div class="selection-dropdown-button placeholder" id="origin-dropdown-btn">
+                                        <span id="origin-dropdown-text">Select Origin</span>
+                                        <div class="chevron"></div>
+                                    </div>
+                                    <div class="selection-dropdown-menu" id="origin-dropdown-menu">
+                                        <div class="selection-dropdown-option" data-value="Lahore-LHR">
+                                            Lahore</div>
+                                        <div class="selection-dropdown-option" data-value="Karachi">Karachi
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="Rawalpindi-RWP">
+                                            Rawalpindi</div>
+                                        <div class="selection-dropdown-option" data-value="Faisalabad-FSD">
+                                            Faisalabad
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="Chowk Azam-CHA">
+                                            Chowk
+                                            Azam
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="Peshawar-PSH">
+                                            Peshawar
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="Layyah-LYA">
+                                            Layyah</div>
+                                        <div class="selection-dropdown-option" data-value="Multan-MUL">
+                                            Multan</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dep-error"></div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label for="destination">Destination City </label>
+
+                            <div class="select-with-icon">
+                                <i class="fa-solid fa-location-dot select-icon"></i>
+                                <div class="dropdown-container">
+                                    <div class="selection-dropdown-button placeholder" id="destination-dropdown-btn">
+                                        <span id="destination-dropdown-text">Select Destination</span>
+                                        <div class="chevron"></div>
+                                    </div>
+                                    <div class="selection-dropdown-menu" id="destination-dropdown-menu">
+                                        <div class="selection-dropdown-option" data-value="Lahore-LHR">
+                                            Lahore</div>
+                                        <div class="selection-dropdown-option" data-value="Karachi">Karachi
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="Rawalpindi-RWP">
+                                            Rawalpindi</div>
+                                        <div class="selection-dropdown-option" data-value="Faisalabad-FSD">
+                                            Faisalabad
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="Chowk Azam-CHA">
+                                            Chowk
+                                            Azam
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="Peshawar-PSH">
+                                            Peshawar
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="Layyah-LYA">
+                                            Layyah</div>
+                                        <div class="selection-dropdown-option" data-value="Multan-MUL">
+                                            Multan</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="dis-error"></div>
+
+                        </div>
+                    </div>
+                    <div class="row" id="row-2">
+
+
+                        <div class="col-md-6">
+                            <div class="form-group position-relative">
+                                <label for="datepicker">Date:</label>
+                                <div class="input-with-icon">
+                                    <i class="ri-calendar-2-line calendar-icon"></i>
+                                    <input type="text" id="datepicker" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-6">
+                            <label for="Time">Departure Time</label>
+
+                            <div class="select-with-icon">
+                                <i class="ri-arrow-up-fill select-icon"></i>
+                                <div class="dropdown-container">
+                                    <div class="selection-dropdown-button placeholder" id="depTime-dropdown-btn">
+                                        <span id="depTime-dropdown-text">Select Departure Time</span>
+                                        <div class="chevron"></div>
+                                    </div>
+                                    <div class="selection-dropdown-menu" id="depTime-dropdown-menu">
+                                        <div class="selection-dropdown-option" data-value="06:00 AM">
+                                            06:00 AM</div>
+                                        <div class="selection-dropdown-option" data-value="09:00 AM">09:00 PM
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="12:00 PM">
+                                            12:00 PM</div>
+                                        <div class="selection-dropdown-option" data-value="03:00 PM">
+                                            03:00 PM
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="06:00 PM">
+                                            06:00 AM
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="09:00 PM">
+                                            09:00 PM
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="departure-time-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="seat">Destination time</label>
+
+
+                            <div class="select-with-icon">
+                                <i class="ri-arrow-down-fill select-icon"></i>
+                                <div class="dropdown-container">
+                                    <div class="selection-dropdown-button placeholder" id="desTime-dropdown-btn">
+                                        <span id="desTime-dropdown-text">Select Destination Time</span>
+                                        <div class="chevron"></div>
+                                    </div>
+                                    <div class="selection-dropdown-menu" id="desTime-dropdown-menu">
+                                        <div class="selection-dropdown-option" data-value="06:00 AM">
+                                            06:00 AM</div>
+                                        <div class="selection-dropdown-option" data-value="09:00 AM">09:00 PM
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="12:00 PM">
+                                            12:00 PM</div>
+                                        <div class="selection-dropdown-option" data-value="03:00 PM">
+                                            03:00 PM
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="06:00 PM">
+                                            06:00 AM
+                                        </div>
+                                        <div class="selection-dropdown-option" data-value="09:00 PM">
+                                            09:00 PM
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="destination-time-error"></div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label for="busType">Bus Type <span class="required"></span></label>
+
+                            <div class="select-with-icon">
+                                <i class="ri-bus-fill select-icon"></i>
+                                <div class="dropdown-container">
+                                    <div class="selection-dropdown-button placeholder" id="BusType-dropdown-btn">
+                                        <span id="BusType-dropdown-text">Select Destination Time</span>
+                                        <div class="chevron"></div>
+                                    </div>
+                                    <div class="selection-dropdown-menu" id="BusType-dropdown-menu">
+                                        <div class="selection-dropdown-option" data-value="Business">
+                                            Buisiness</div>
+                                        <div class="selection-dropdown-option" data-value="Economy">Economy
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="bustype-error"></div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="select-terminal-container">
+                                <label for="">Terminal</label>
+
+                                <div class="select-with-icon">
+                                    <i class="fa-solid fa-building select-icon"></i>
+                                    <div class="dropdown-container">
+                                        <div class="selection-dropdown-button placeholder" id="BusTerminal-dropdown-btn">
+                                            <span id="BusTerminal-dropdown-text">Select Terminal</span>
+                                            <div class="chevron"></div>
+                                        </div>
+                                        <div class="selection-dropdown-menu" id="BusTerminal-dropdown-menu">
+                                            <div class="selection-dropdown-option" data-value="DAEWOO EXPRESS">
+                                                DAEWOO EXPRESS</div>
+                                            <div class="selection-dropdown-option" data-value="AL-HALAL-TERMINAL">
+                                                AL-HALAL-TRAVELS
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="terminal-error"></div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="fare">
+                                <label for="">Fare</label>
+                                <input type="text" name="" maxlength="4" id="fare"
+                                    placeholder="Enter the per seat fare">
+                                <div class="fare-error"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="route-detail-btn">
+                    <button class="route-cancel-btn">Cancel</button>
+                    <button class="route-submit-btn">Save details</button>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- View Details Modal  -->
+
+    <div id="view-modal-overlay" class="view-modal-overlay">
+        <div class="view-modal-data">
+            <div class="cross-img">
+                <img src="remove.png" alt="">
+            </div>
+            <h2>Route Details</h2>
+            <div class="view-text-container">
+
+                <div class="key-value">
+                    <div class="">Departure City:</div>
+                    <div class="dep"></div>
+                </div>
+                <div class="key-value">
+                    <div class="">Destination City:</div>
+                    <div class="des"></div>
+                </div>
+                <div class="key-value">
+                    <div class="">Date:</div>
+                    <div class="dep-date"></div>
+                </div>
+                <div class="key-value">
+                    <div class="">Departure:</div>
+                    <div class="dep-time"></div>
+                </div>
+                <div class="key-value">
+                    <div class="">Arrival:</div>
+                    <div class="arr-time"></div>
+                </div>
+                <div class="key-value">
+                    <div class="">Terminal:</div>
+                    <div class="terminal-name"></div>
+                </div>
+                <div class="key-value">
+                    <div class="">Fare:</div>
+                    <div class="show-fare"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+    <script type="module" src="/auth-check.js"></script>
+    <script type="module" src="/JSfirebase-config.js"></script>
+    <script src="/dashboard.js"></script>
+
+
+
+    <!-- jQuery (Required) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+    <!-- Bootstrap Datepicker JS -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Get today's date
+            const today = new Date();
+
+            // Format it as yyyy-mm-dd
+            const formattedToday = today.toISOString().split('T')[0];
+
+            const maxDate = new Date();
+            maxDate.setDate(today.getDate() + 4);
+            $('#datepicker').val(formattedToday);
+
+            $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                startDate: today,
+                endDate: maxDate,
+                orientation: "top auto",
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>
+</body>
+
+</html>

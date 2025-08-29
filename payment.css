@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-green: rgb(0, 128, 0);
+    --color-lite-green: #28a745;
+    --main-font: "Montserrat", sans-serif;
+    --color-black: #434343;
+    --header-color: #f8f9fa;
+}
+
+.payment-container {
+    margin: 50px 0px 200px;
+}
+
+#row-1 {
+    width: 85%;
+    margin: auto;
+}
+
+.payment-options {
+    /* border: 1px solid black; */
+    padding-top: 50px;
+    /* padding-top: 10px 20px; */
+}
+
+.payment-options h1 {
+    background-color: #eeeeee;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    padding: 40px 30px;
+}
+
+.payment-options h2 {
+    color: #343b43;
+    font-size: 1rem;
+    padding: 35px 30px !important;
+    font-weight: 600;
+    background-color: #faf9f9;
+    border-bottom: 1px solid #ebebeb;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.payment-options h2:hover {
+    background-color: #c2f0cd;
+
+}
+
+.payment-options span img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.seat-policy {
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.seat-policy img {
+    width: 500px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+#payment-detail-table {
+    width: 100%;
+    background-color: #faf9f9;
+}
+
+#payment-detail-table th {
+    padding: 10px;
+}
+
+#data-row {
+    background-color: #ebebeb;
+
+}
+
+td {
+    padding: 10px 10px;
+    border-bottom: 1px solid #ebebeb;
+
+}
+
+#status span {
+    background-color: #ffc107;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bolder;
+    padding: 5px;
+}
+
+/* BOOKING SUMMARY  */
+
+
+.booking-summary {
+    padding-top: 50px;
+}
+
+.summary-details {
+    background-color: #faf9f9;
+    padding: 10px 20px;
+}
+
+.booking-summary h1 {
+    background-color: #eeeeee;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    padding: 40px 30px;
+}
+
+.origin,
+.Destination,
+.Terminal,
+.Dep-Details,
+.Actual-Fare,
+.Service-Charges,
+.Discount {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+
+.origin,
+.Destination,
+.Terminal,
+.Dep-Details,
+.Actual-Fare,
+.Service-Charges,
+.Discount p {
+    font-weight: 500;
+}
+
+#terminal{
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.Total-Amount {
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0px;
+}
+
+.Total-Amount p {
+    font-weight: 500;
+}
+
+.validation-of-payment {
+    padding: 10px 5px;
+}
+
+.validation-of-payment input {
+    margin-right: 5px;
+}
+
+#pay-now {
+    padding: 10px 30px;
+    text-align: center;
+    width: 100%;
+    border: none;
+    color: white;
+    background-color: #008000;
+    border-radius: 5px;
+}
+
+
+
+
+@media(max-width:1200px) {
+    #row-1 {
+        width: 95%;
+        margin: auto;
+    }
+
+}
+
+@media(max-width:990px) {
+    .seat-policy img {
+        width: 100%;
+        padding: 20px 30px;
+    }
+}
+
+@media(max-width:535px) {
+
+
+    #payment-detail-table th {
+        padding: 5px;
+        font-size: 11px;
+    }
+
+    #payment-detail-table td {
+        padding: 5px 1px;
+        font-size: 11px;
+    }
+
+    .origin,
+    .Destination,
+    .Terminal,
+    .Dep-Details,
+    .Actual-Fare,
+    .Service-Charges,
+    .Discount p {
+        font-size: 12px;
+    }
+
+
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Tickets Online | Baloch Transport Bus Service</title>
+    <!-- Fevicon Icon  -->
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <!-- Google Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,200;0,400;0,700;0,800;0,900;1,300;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Remix Icon Link  -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- Box Icon Link  -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <!-- BootStrap Link  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <!-- Date Picker Link  -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Bootstrap Datepicker CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <!-- Link CSS  -->
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="order.css">
+
+</head>
+
+<body>
+
+
+    <!-- Header Section  -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="balochtransport-logo">
+            </a>
+
+        </div>
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="index.html"><i class="fa-solid fa-house-chimney"></i>
+                        <span>Home</span></a>
+                </li>
+                <li><a href="about.html"><i class="fa-solid fa-users"></i> <span>About
+                            Us</span></a></li>
+                <li><a href="contact.html"><i class="fa-solid fa-envelope"></i>
+                        <span>Contact
+                            Us</span></a></li>
+                <li id="loginSignup-li"><a href="login.html"><i
+                            class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <span>Login/Signup</span>
+                    </a></li>
+
+
+
+                <div class="custom-dropdown">
+                    <button class="custom-dropdown-toggle" id="customDropdownBtn" style="color: #008000;">
+                        <span><i class="fa-solid fa-user"></i></span>
+                    </button>
+                    <ul class="custom-dropdown-menu" id="customDropdownMenu">
+                        <li><a href="profile.html" style="font-weight: 400;">Profile</a></li>
+                        <li><a href="order.js"
+                                style="font-weight: 400; background-color: #008000; color: white;">My Tickets</a></li>
+                        <li><a href="wallet.html" style="font-weight: 400;">My Wallet</a></li>
+                        <li><a href="#" style="font-weight: 400;" id="log-out">Logout</a></li>
+                    </ul>
+                </div>
+
+
+            </ul>
+        </div>
+
+        <div class="cargo-container">
+            <a href="dashboard.html" class="switch-to-admin"><span>Switch to Admin</span></a>
+            <a href="#"><i class="fa-solid fa-truck"></i> <span>Cargo Tracking</span></a>
+        </div>
+        <div class="ham-burger-btn">
+            <a href="#"><i class="ri-menu-line"></i></a>
+        </div>
+    </header>
+
+
+
+    <div class="profile-container">
+        <div class="row">
+            <div class="col-lg-3 profile-left">
+                <div class="head">
+                    <h4 id="heading-name"></h4>
+                    <p>Joined Jul 23, 2025</p>
+                    <p>
+                        Wallet Balance:
+                        <b>0 PKR</b>
+                    </p>
+                    <hr>
+                </div>
+
+                <div class="menus">
+                    <nav class="list-group list-group-flush nav nav-tabs">
+                        <a href="profile.html" class="active">
+                            PROFILE SETTINGS
+                        </a>
+                        <hr>
+                        <a href="order.html"
+                            style="color: #008000; border-left: 4px solid #008000;">
+                            MY TICKETS
+                        </a>
+                        <hr>
+                        <a href="wallet.html" style="padding-bottom: 10px;">
+                            MY WALLET
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+
+            <div class="col-lg-9 profile-right">
+                <h4 style="font-size: 20px;">Booking List</h4>
+                <hr class="pb-3">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Order #</th>
+                                <th>Created At</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                                <th>View</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="module" src="/JSfirebase-config.js"></script>
+    <script type="module" src="/auth-check.js"></script>
+
+    <script src="home.js"></script>
+    <!-- <script src="/Profile-Section-files/profile.js"></script> -->
+    <script src="order.js"></script>
+</body>
+
+</html>

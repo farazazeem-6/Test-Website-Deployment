@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Tickets Online | Baloch Transport Bus Service</title>
+    <!-- Fevicon Icon  -->
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <!-- Google Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,200;0,400;0,700;0,800;0,900;1,300;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Remix Icon Link  -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- Box Icon Link  -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <!-- BootStrap Link  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+    <!-- Date Picker Link  -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Bootstrap Datepicker CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <!-- Link CSS  -->
+    <link rel="stylesheet" href="/home.css">
+
+</head>
+
+<body>
+
+    <!-- Header Section  -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="balochtransport-logo">
+            </a>
+
+        </div>
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="index.html" class="active"><i class="fa-solid fa-house-chimney"></i>
+                        <span>Home</span></a>
+                </li>
+                <li><a href="about.html"><i class="fa-solid fa-users"></i> <span>About
+                            Us</span></a></li>
+                <li><a href="contact.html"><i class="fa-solid fa-envelope"></i>
+                        <span>Contact
+                            Us</span></a></li>
+                <li id="loginSignup-li"><a href="login.html"><i
+                            class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <span>Login / Signup</span>
+                    </a></li>
+
+
+                <div class="custom-dropdown">
+                    <button class="custom-dropdown-toggle" id="customDropdownBtn">
+                        <span><i class="fa-solid fa-user"></i></span>
+                    </button>
+                    <ul class="custom-dropdown-menu" id="customDropdownMenu">
+                        <li><a href="profile.html" style="font-weight: 400;">Profile</a></li>
+                        <li><a href="order.html" style="font-weight: 400;">My Tickets</a></li>
+                        <li><a href="wallet.html" style="font-weight: 400;">My Wallet</a></li>
+                        <li><a href="#" style="font-weight: 400;" id="log-out">Logout</a></li>
+                    </ul>
+                </div>
+
+            </ul>
+        </div>
+
+        <div class="cargo-container">
+            <a href="dashboard.html" class="switch-to-admin"><span>Switch to Admin</span></a>
+            <a href="#"><i class="fa-solid fa-truck"></i> <span>Cargo Tracking</span></a>
+        </div>
+        <div class="ham-burger-btn">
+            <a href="#"><i class="ri-menu-line"></i></a>
+        </div>
+    </header>
+
+    <!-- Home Section  -->
+    <section class="home-section">
+        <div class="home-section-parent">
+            <div class="home-section-text">
+                <h2>Find Your Perfect Bus Journey</h2>
+                <p>Uncover seamless travel experiences and book your next adventure effortlessly with our
+                    user-friendly
+                    bus
+                    Booking apps</p>
+                <a href="#" onclick="return false;"> <span><i class="fa-solid fa-bolt"></i></span> Comfortable
+                    bus
+                    rides</a>
+            </div>
+            <div class="home-section-img">
+                <img src="bus (1).png" alt="">
+            </div>
+        </div>
+
+        <!-- Booking Inputs -->
+        <div class="search-container-wrapper">
+            <div class="search-container">
+                <form class="search-form">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group position-relative">
+                                <label for="origin">Origin:</label>
+                                <div class="select-with-icon">
+                                    <i class="fa-regular fa-circle select-icon"></i>
+
+
+                                    <div class="dropdown-container">
+                                        <div class="selection-dropdown-button placeholder" id="origin-dropdown-btn">
+                                            <span id="origin-dropdown-text">Select Origin</span>
+                                            <div class="chevron"></div>
+                                        </div>
+                                        <div class="selection-dropdown-menu" id="origin-dropdown-menu">
+                                            <div class="selection-dropdown-option" data-value="Lahore-LHR">
+                                                Lahore-LHR</div>
+                                            <div class="selection-dropdown-option" data-value="Karachi">Karachi
+                                            </div>
+                                            <div class="selection-dropdown-option" data-value="Rawalpindi-RWP">
+                                                Rawalpindi-RWP</div>
+                                            <div class="selection-dropdown-option" data-value="Faisalabad-FSD">
+                                                Faisalabad-FSD
+                                            </div>
+                                            <div class="selection-dropdown-option" data-value="Chowk Azam-CHA">
+                                                Chowk
+                                                Azam-CHA
+                                            </div>
+                                            <div class="selection-dropdown-option" data-value="Peshawar-PSH">
+                                                Peshawar-PSH
+                                            </div>
+                                            <div class="selection-dropdown-option" data-value="Layyah-LYA">
+                                                Layyah-LYA</div>
+                                            <div class="selection-dropdown-option" data-value="Multan-MUL">
+                                                Multan-MUL</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="dep-error-div"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group position-relative">
+                                <label for="destination">Destination:</label>
+
+                                <div class="select-with-icon">
+                                    <i class="fa-solid fa-location-dot select-icon"></i>
+
+                                    
+                                    <div class="dropdown-container">
+                                        <div class="selection-dropdown-button placeholder"
+                                            id="destination-dropdown-btn">
+                                            <span id="destination-dropdown-text">Select Destination</span>
+                                            <div class="chevron"></div>
+                                        </div>
+                                        <div class="selection-dropdown-menu" id="destination-dropdown-menu">
+                                            <div class="selection-dropdown-option" data-value="Lahore-LHR">
+                                                Lahore-LHR</div>
+                                            <div class="selection-dropdown-option" data-value="Karachi">Karachi
+                                            </div>
+                                            <div class="selection-dropdown-option" data-value="Rawalpindi-RWP">
+                                                Rawalpindi-RWP</div>
+                                            <div class="selection-dropdown-option" data-value="Faisalabad-FSD">
+                                                Faisalabad-FSD
+                                            </div>
+                                            <div class="selection-dropdown-option" data-value="Chowk Azam-CHA">
+                                                Chowk
+                                                Azam-CHA
+                                            </div>
+                                            <div class="selection-dropdown-option" data-value="Peshawar-PSH">
+                                                Peshawar-PSH
+                                            </div>
+                                            <div class="selection-dropdown-option" data-value="Layyah-LYA">
+                                                Layyah-LYA</div>
+                                            <div class="selection-dropdown-option" data-value="Multan-MUL">
+                                                Multan-MUL</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="des-error-div"></div>
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <div class="form-group position-relative">
+                                <label for="datepicker">Date:</label>
+                                <div class="input-with-icon">
+                                    <i class="ri-calendar-2-line calendar-icon"></i>
+                                    <input type="text" id="datepicker" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="">&nbsp;</label>
+                                <button type="button" onclick="CheckValidation()" class="search-button">Search</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Book Us Text Section  -->
+
+    <section class="next-section next-main">
+        <div class="next-content">
+            <h2>Why Book With Us?</h2>
+            <p>Choose our bus service for a journey defined by reliability, comfort, and safety. With punctual
+                arrivals,
+                plush seating, and a commitment to eco-friendly travel, we offer a convenient and enjoyable
+                experience.
+                Our extensive network ensures connectivity to key destinations, all at an affordable price. Make
+                every
+                journey a value-packed adventure with us, where your destination is as important as the ride
+                itself.
+
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- Add Boxes Section  -->
+
+    <section class="add-boxes">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3 mt-5 mt-md-5">
+                    <div class="box">
+                        <div class="box-icon">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <div class="box-text">
+                            <p>
+                                Explore Everywhere <br>
+                                Discover all over online travel deals effortlessly in one go.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mt-5 mt-md-5">
+                    <div class="box">
+                        <div class="box-icon">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <div class="box-text">
+                            <p>
+                                Shop with Confidence <br>
+                                Enjoy transparent pricing with no any hidden fees or surprises.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mt-5 mt-md-5">
+                    <div class="box">
+                        <div class="box-icon">
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+                        <div class="box-text">
+                            <p>
+                                Flexible Payment <br> Methods <br>
+                                Choose sellers supporting your preferred payment methods.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mt-5 mt-md-5">
+                    <div class="box">
+                        <div class="box-icon">
+                            <i class="fa-solid fa-bolt-lightning"></i>
+                        </div>
+                        <div class="box-text">
+                            <p>
+                                Instant Booking <br>
+                                For selected sellers, book your trip with just a couple of clicks.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Categoris and Service Text  -->
+
+
+    <section class="next-section next-section-2">
+        <div class="next-content">
+            <h2>Categories & Services</h2>
+            <p>
+                A feature which differentiates between Baloch Transport and other transportation services is the
+                multiple services such as Standard, Executive and Business class. The ticket prices & rates are
+                different for these basic and luxurious services.</p>
+
+        </div>
+    </section>
+
+    <!-- Swap Cards  -->
+
+    <section class="swap-cards-container">
+
+        <div class="carousel-container">
+
+            <div class="back-btn">
+                <button class="nav-btn prev-btn" onclick="previousCard()">
+                    <img src="left-arrow.png" alt="">
+                </button>
+            </div>
+
+
+            <!-- Cards -->
+            <div class="cards-holding-container">
+
+
+
+                <div class="card active" id="card1">
+                    <div class="card-image first-card">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">Executive Class</div>
+                        <div class="card-title">Latest Yutong buses falls in this category with more leg space
+                            and VOD
+                            system.</div>
+                    </div>
+                </div>
+
+                <div class="card next" id="card2">
+                    <div class="card-image second-card">
+
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">Gold Class</div>
+                        <div class="card-title">Yutong Nova & Zhongtong buses falls in this category with more
+                            leg space
+                            and
+                            VOD system.</div>
+                    </div>
+                </div>
+
+                <div class="card prev" id="card3">
+                    <div class="card-image third-card">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">Business + Gold Class</div>
+                        <div class="card-title">This service type has First 9 business and other 29 Gold Class
+                            Seats.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="forward-btn">
+                <button class="nav-btn next-btn" onclick="nextCard()">
+                    <img src="right-arrow (1).png" alt="">
+                </button>
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- Summary Text  -->
+    <section class="next-section summary-section">
+        <div class="next-content">
+            <h2>OUR CORE VALUES</h2>
+            <p>The Baloch Transport Bus Service is one of the largest passenger transport company of Pakistan
+                with an
+                enviable passenger base and track record, operating across Punjab, Sindh, Khyber Pakhtunkhwa and
+                Balochistan. Founded in 1955 by (Late) Ahmad Nawaz Khitran, the company is registered and
+                services are
+                backed with fully qualified professional employees. We offer a safe and affordable passenger
+                transport
+                in luxury coaches and buses.</p>
+        </div>
+    </section>
+
+
+    <!-- Experience Boxes  -->
+    <div class="exp-box-container">
+        <div class="row exp-row">
+
+            <div class="col-md-4">
+                <div class="exp-box">
+                    <h2><span><i class="fa-solid fa-house-chimney"></i></span>52</h2>
+                    <h3>TERMINALS</h3>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="exp-box ex-box-2" id="exp-box-2">
+                    <h2><span><i class="fa-solid fa-globe"></i></span>47</h2>
+                    <h3>CITIES COVERED</h3>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="exp-box" id="exp-box-3">
+                    <h2><span><i class="fa-solid fa-clock"></i></span>65</h2>
+                    <h3>YEARS OF EXPERIENCE</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Contact Us  -->
+
+    <div class="subscribe-container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="subscribe-text">
+                    <h2>SUBSCRIBE TO OUR </h2>
+                    <h1>NEWSLETTER</h1>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="subscribe-mail">
+                    <form id="subscribe-form">
+                        <input type="email" placeholder="Enter email address" name="email" required
+                            id="subscribe-email">
+                        <input type="submit" value="SUBMIT">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer Section  -->
+
+    <footer>
+        <div class="row">
+            <div class="col-md-4 column-1">
+                <h3>About Baloch Transport Service</h3>
+                <p>The Baloch Transport Bus Service is one of the largest passenger transport company of
+                    Pakistan with
+                    an enviable passenger base and track record, operating across Punjab, Sindh, Khyber
+                    Pakhtunkhwa and
+                    Balochistan. Founded in 1955 by (Late) Ahmad Nawaz Khitran.</p>
+            </div>
+            <div class="col-md-2 column-2">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About Us</a></li>
+                    <li><a href="">Contact Us</a></li>
+                    <li><a href="">Data Privacy and Policy</a></li>
+                    <li><a href="">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 column-3">
+                <h3>Download App</h3>
+                <div class="social-img">
+                    <a href="https://apps.apple.com/us/app/baloch-transport/id1514959195" target="_blank">
+                        <img src="AppleStore-Image.svg" alt="">
+
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.brikmas.balochtransport&hl=en"
+                        target="_blank">
+                        <img src="PlayStore-Image.svg" alt="">
+
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-md-3 column-4">
+                <h3>Social Links</h3>
+                <div class="social-links">
+                    <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- Last footer  -->
+    <div class="copyright-footer">
+        <p>Copyright © 1955 – 2025 Baloch Transport Services. All rights reserved.
+
+        </p>
+    </div>
+
+    <!-- Modal  -->
+
+    <div id="forget-modal" class="forget-modal">
+        <div class="modal-data">
+            <div class="cross-img">
+                <img src="remove.png" alt="">
+            </div>
+            <div class="forget-text-container">
+                <h2>🎉 Subscription Confirmed!</h2>
+                <p>Thank you for subscribing! Welcome to Baloch Transports.</p>
+                <a href="index.html">
+                    <button class="send-email-btn">EXPLORE MORE</button>
+
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="module" src="/JSfirebase-config.js"></script>
+    <script type="module" src="/auth-check.js"></script>
+
+
+    <script src="home.js"></script>
+    <!-- jQuery (Required) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Datepicker JS -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Get today's date
+            const today = new Date();
+
+            // Format it as yyyy-mm-dd
+            const formattedToday = today.toISOString().split('T')[0];
+
+            const maxDate = new Date();
+            maxDate.setDate(today.getDate() + 4);
+            $('#datepicker').val(formattedToday);
+
+            $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                startDate: today,
+                endDate: maxDate,
+                orientation: "top auto",
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

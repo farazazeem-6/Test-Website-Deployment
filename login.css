@@ -1,0 +1,593 @@
+:root {
+  --color-green: rgb(0, 128, 0);
+  --color-lite-green: #28a745;
+  --main-font: "Montserrat", sans-serif;
+  --color-black: #434343;
+  --header-color: #f8f9fa;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+body.modal-open {
+  overflow: hidden !important;
+}
+header {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.subscribe-container {
+  margin-top: 0px;
+}
+
+.username-error,
+.password-error,
+.invalid-forget-email {
+  color: red;
+  font-size: 14px;
+  padding-left: 5px;
+  padding-top: 5px;
+  font-weight: 600;
+  font-family: var(--main-font);
+}
+
+.login-container {
+  margin: 3px 0px 0px;
+}
+
+#side-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#side-img img {
+  width: 100%;
+  max-width: 100%;
+}
+
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+#login-details {
+  background: #f6f7fc;
+  padding: 80px 10%;
+}
+
+#login-details h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #212529;
+  line-height: 1.2;
+}
+
+#login-details p {
+  color: #b3b3b3;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-family: var(--main-font);
+  font-weight: 300;
+}
+
+#form-1 label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-family: var(--main-font);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  color: #212529;
+  padding-top: 15px;
+}
+
+#form-1 input {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1rem;
+  color: #495057;
+  padding: 15px 20px;
+  border: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: 1px solid #ebebeb;
+  border-radius: 8px;
+}
+
+#form-1 input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: none;
+  border: 2px solid var(--color-lite-green);
+}
+
+#login-details input:focus {
+  outline: none;
+}
+
+#login-details input::placeholder {
+  color: #b3b3b3;
+  font-family: var(--main-font);
+}
+
+.remember-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px 0px 0px 0px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.remember-me input {
+  box-shadow: none;
+  border: none;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #007bff;
+  cursor: pointer;
+}
+
+.remember-me label {
+  cursor: pointer;
+  user-select: none;
+  color: #888;
+  font-weight: 400;
+  font-family: var(--main-font);
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.forgot-password {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  color: #343a40;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-size: 14px;
+  font-family: var(--main-font);
+}
+
+.forgot-password:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+.forgot-password i {
+  font-size: 14px;
+  padding-right: 3px;
+}
+
+.log-in-btn {
+  border: none;
+  background-color: #008000;
+  color: #fff;
+  width: 100%;
+  font-family: var(--main-font);
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 15px 20px;
+  border-radius: 0.25rem;
+  margin-top: 2rem;
+}
+
+.create-acc-text {
+  font-size: 15px;
+  color: #000;
+  font-family: var(--main-font);
+  margin-top: 10px;
+  font-weight: 400;
+}
+
+.create-acc-text span a {
+  text-decoration: none;
+  color: #888;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: var(--main-font);
+  padding-right: 5px;
+}
+
+/* Modal CSS  */
+
+#forget-modal-1 {
+  width: 900px;
+  margin: auto;
+  border-radius: 10px;
+  max-width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-data {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: relative;
+}
+
+.cross-img-1 {
+  display: flex;
+  justify-content: end;
+}
+
+.cross-img-1 img {
+  width: 30px;
+  cursor: pointer;
+}
+
+.forget-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.forget-text-container h2 {
+  color: #000;
+  font-size: 24px;
+  font-family: var(--main-font);
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.forget-text-container p {
+  color: #000;
+  font-family: var(--main-font);
+  font-size: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#forget-form input {
+  width: 300px;
+  max-width: 100%;
+  padding: 9px 12px;
+  font-family: var(--main-font);
+  background-color: #ffffff;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#forget-form input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: none;
+  border: 2px solid var(--color-lite-green);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 1000px #fff inset !important;
+  background-color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+.send-email-btn {
+  background-color: #008000;
+  color: #fff;
+  font-family: var(--main-font);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-top: 30px;
+  border: none;
+  padding: 9px 12px;
+  border-radius: 0.25rem;
+  margin-bottom: 30px;
+}
+
+.navbar {
+  display: flex;
+  gap: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 50px;
+  border: 1px solid rgba(26, 25, 25, 0.2);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.nav-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.nav-item:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-item:hover::before {
+  transform: translateX(100%);
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.nav-item:hover .icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.google-icon {
+  background: url("Google-icon.png");
+  background-size: contain;
+}
+
+.facebook-icon {
+  background: url("facebook-icon.png");
+  background-size: contain;
+}
+
+.github-icon {
+  background: url("github\ \(2\).png") no-repeat center;
+  background-size: contain;
+}
+
+.phone-icon {
+  background: url("phone-call.png") no-repeat center;
+  background-size: contain;
+}
+
+/* Phone Modal CSS  */
+
+.form-otp {
+  display: none;
+}
+
+.login-phone-error,
+.otp-error {
+  font-size: 14px;
+  color: red;
+  font-weight: 600;
+  padding-top: 5px;
+  padding-left: 5px;
+  font-family: var(--main-font);
+}
+
+.phoneModal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display: none;
+  font-family: var(--main-font);
+}
+
+.phoneModal {
+  background: white;
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 450px;
+  position: relative;
+}
+
+.close-phonebtn img {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phoneModal h2 {
+  margin-bottom: 20px;
+  color: #212529;
+  text-align: center;
+}
+
+.phoneModal .form-group {
+  margin-bottom: 15px;
+}
+
+.phoneModal label {
+  display: block;
+  margin-bottom: 5px;
+  color: #212529;
+  font-weight: 500;
+}
+
+.phoneModal input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.phoneModal input:focus {
+  outline: none;
+
+  border: 2px solid #008000;
+}
+
+#phone-modal-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #008000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.resend-button {
+  font-size: 12px;
+  text-decoration: underline;
+  color: #008000;
+  border: none;
+  background: transparent;
+}
+
+/* Email Modal CSS:  */
+
+.email-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display: none;
+  font-family: var(--main-font);
+}
+
+.emailModal {
+  background: white;
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 450px;
+  position: relative;
+}
+
+.emailmodalBtn,
+.phonemodalBtn {
+  display: block;
+  width: 100%;
+  padding: 12px 0px;
+  color: white;
+  background-color: #008000;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--main-font);
+  margin-top: 40px;
+}
+
+.close-emailbtn img {
+  width: 30px;
+}
+
+@media (max-width: 1100px) {
+  #login-details {
+    background: #f6f7fc;
+    padding: 80px 5%;
+  }
+}
+
+@media (max-width: 600px) {
+  #side-img {
+    display: none;
+  }
+
+  .login-container {
+    margin: 0px;
+  }
+
+  #login-details {
+    padding: 50px;
+  }
+}
+
+@media (max-width: 550px) {
+  #forget-form input {
+    width: 300px;
+    max-width: 100%;
+  }
+
+  .forget-text-container {
+    padding: 0px 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .forgot-password {
+    font-size: 10px;
+  }
+
+  .forgot-password i {
+    font-size: 10px;
+  }
+
+  .remember-me input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: #007bff;
+    cursor: pointer;
+  }
+
+  .remember-me label {
+    font-size: 10px;
+  }
+}

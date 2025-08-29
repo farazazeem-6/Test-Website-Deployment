@@ -1,0 +1,556 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+
+:root {
+    --color-green: rgb(0, 128, 0);
+    --color-lite-green: #28a745;
+    --main-font: "Montserrat", sans-serif;
+    --color-black: #434343;
+    --header-color: #f8f9fa;
+}
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li,
+a,
+nav {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Date Picker CSS  */
+
+.datepicker {
+    padding: 8px !important;
+    font-size: 14px;
+}
+
+
+.datepicker table tr td,
+.datepicker table tr th {
+    padding: 4px 8px;
+}
+
+
+.datepicker table tr th {
+    color: rgb(97, 180, 7) !important;
+    font-weight: 400;
+    font-size: 12px;
+    font-family: var(--main-font);
+}
+
+.datepicker table tr td {
+    color: rgb(74, 74, 74);
+    font-size: 12px;
+}
+
+
+.dep-error,
+.dis-error,
+.date-error,
+.departure-time-error,
+.destination-time-error,
+.bustype-error,
+.terminal-error,
+.fare-error {
+    font-size: 12px;
+    color: rgb(240, 4, 4);
+    padding-left: 5px;
+    padding-top: 3px;
+}
+
+#sidebar {
+    top: 0;
+    height: 100vh;
+    background-color: var(--header-color);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 100px;
+    position: fixed;
+    width: 25%;
+}
+
+#main-section {
+    margin: 0 0 0 25%;
+    padding: 0;
+    width: 75%;
+}
+
+#dash-header {
+    padding: 40px 120px 20px 120px;
+    margin: 0;
+    width: 100%;
+    background: transparent;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    gap: 30px;
+}
+
+.logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.button {
+    width: 100%;
+    padding: 0px 20px;
+}
+
+.button button {
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid #28a745;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: var(--main-font);
+    transition: all .3s ease;
+    color: #28a745;
+    background: transparent;
+}
+
+.button button:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.custom-dropdown {
+    display: flex;
+}
+
+nav {
+    display: flex;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+
+#switch-user {
+    border: 1px solid #28a745;
+    text-decoration: none;
+    color: #28a745;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family: var(--main-font);
+    transition: all .3s ease;
+}
+
+#switch-user:hover {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+
+/* Router Containe CSS  */
+.route-container {
+    padding: 20px 50px;
+    font-family: var(--main-font);
+}
+
+.route-container h4 {
+    color: #000000;
+    font-size: 29px;
+    font-weight: 600;
+    font-family: var(--main-font);
+}
+
+.add-route {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.route-container button {
+    border: 1px solid #28a745;
+    text-decoration: none;
+    color: #28a745;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    font-family: var(--main-font);
+    transition: all .3s ease;
+    background: transparent;
+}
+
+.route-container button:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Cards CSS */
+
+
+.cards-container {
+    margin-top: 50px;
+    font-family: var(--main-font);
+    height: 100%;
+    padding: 0px 50px;
+    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+
+}
+
+.card-1 {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.card-img-section {
+    padding: 10px 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #ebebeb;
+
+}
+
+.card-img-section img {
+    max-width: 160px;
+    width: 100%;
+}
+
+.main-content {
+    padding: 24px;
+}
+
+.service-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 16px;
+    font-family: var(--main-font);
+}
+
+.service-details {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.departure-city {
+    color: #28a745;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid #28a745;
+}
+
+
+.destination-city {
+    color: #28a745;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid #28a745;
+}
+
+.bus-type {
+    color: #28a745;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid #28a745;
+}
+
+
+.created-date {
+    color: #28a745;
+    font-size: 12px;
+    margin-bottom: 24px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #e9ecef;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    background: none;
+    color: #28a745;
+    border: 1px solid #28a745;
+
+}
+
+.btn:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+
+
+/* Route Modal Overlay  */
+
+.no-bus-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.route-modal-overlay {
+    width: 900px;
+    margin: auto;
+    border-radius: 10px;
+    max-width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: var(--main-font);
+}
+
+.route-modal-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 900px;
+    width: 90%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: relative;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.95rem;
+    margin-top: 10px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #28a745;
+}
+
+input::placeholder {
+    color: #888;
+    /* color: #28a745; */
+
+}
+
+.action-buttons .btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+input:focus,
+input:active {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    box-shadow: 0 0 0 1000px white inset !important;
+    background-color: white !important;
+    color: #28a745 !important;
+}
+
+
+.main-container {
+    width: 80%;
+    margin: auto;
+}
+
+.travel-info {
+    width: 80%;
+    margin: auto;
+}
+
+.travel-fields {
+    align-items: center;
+}
+
+.travel-fields h4 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: center;
+    color: #28a745;
+
+}
+
+.route-detail-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.route-detail-btn button {
+    border: 1px solid #28a745;
+    color: #28a745;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: transparent;
+    transition: all .3s ease;
+    font-size: 14px;
+}
+
+.route-detail-btn button:hover {
+    color: white;
+    background-color: #28a745;
+}
+
+
+
+
+
+
+/* View Modal CSS  */
+
+.trigger-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.trigger-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Modal Overlay */
+
+.view-modal-overlay {
+    width: 900px;
+    margin: auto;
+    border-radius: 10px;
+    max-width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: var(--main-font);
+}
+
+
+.view-modal-data {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: relative;
+}
+
+.view-text-container {
+    background-color: #ebebeb;
+    border-radius: 8px;
+    padding: 10px;
+
+}
+
+.view-modal-data h2 {
+    text-align: center;
+    font-family: var(--main-font);
+}
+
+.key-value {
+    display: flex;
+    justify-content: space-between;
+    color: #333;
+    font-weight: 600;
+    padding: 10px;
+    font-family: var(--main-font);
+
+}
+
+.select-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-green);
+    font-size: 20px;
+    pointer-events: none;
+}
+
+
+@media(max-width:1093px) {
+    .card-1 {
+        width: 100%;
+    }
+}

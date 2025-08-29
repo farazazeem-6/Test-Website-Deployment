@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+:root {
+    --color-green: rgb(0, 128, 0);
+    --color-lite-green: #28a745;
+    --main-font: "Montserrat", sans-serif;
+    --color-black: #434343;
+    --header-color: #f8f9fa;
+}
+
+
+.profile-container {
+    padding: 100px 110px;
+}
+
+.head p {
+    font-size: 14px;
+    padding-top: 10px;
+}
+
+.nav-tabs a {
+    text-decoration: none;
+    color: #434343;
+    font-size: 14px;
+    font-weight: 600;
+    padding-top: 7px;
+    padding-left: 10px;
+}
+
+#update-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Update-Btn {
+    color: white;
+    background-color: #008000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+
+}
