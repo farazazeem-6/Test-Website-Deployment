@@ -1,7 +1,7 @@
 const firstNameSpan = document.querySelector('.first-name')
 let firstName = localStorage.getItem('first-name');
 // console.log(firstName);
-firstNameSpan.innerHTML = `<i style="padding-right: 4px;"class="fa-solid fa-user"></i> ${firstName}`;
+// firstNameSpan.innerHTML = `<i style="padding-right: 4px;"class="fa-solid fa-user"></i> ${firstName}`;
 
 const routecancelbtn = document.querySelector('.route-cancel-btn');
 const routesubmitbtn = document.querySelector('.route-submit-btn');
@@ -129,7 +129,7 @@ function createCard(data, indexFromStorage = null) {
     const imgSection = document.createElement("div");
     imgSection.classList.add("card-img-section");
     const img = document.createElement("img");
-    img.src = "/images/bus (1).png";
+    img.src = "bus (1).png";
     img.alt = "";
     imgSection.appendChild(img);
 

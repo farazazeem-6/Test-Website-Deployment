@@ -10,8 +10,8 @@ body.no-scroll {
 }
 /* whole scrollbar */
 ::-webkit-scrollbar {
-  width: 8px; /* width of vertical scrollbar */
-  height: 10px; /* height of horizontal scrollbar */
+  width: 8px;
+  height: 10px;
 }
 
 /* background of scrollbar */
@@ -31,7 +31,7 @@ body.no-scroll {
 }
 
 .switch-to-admin {
-  display: none;
+  /* display: none; */
 }
 
 :root {
