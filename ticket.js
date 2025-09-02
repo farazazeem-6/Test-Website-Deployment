@@ -72,6 +72,9 @@ class DualRangeSlider {
 
     this.minDisplay.textContent = this.minValue;
     this.maxDisplay.textContent = this.maxValue;
+
+    // 🔥 refresh cards based on current slider range
+renderCards(this.minValue, this.maxValue);
   }
 
   handleMouseDown(e, thumb) {
@@ -153,11 +156,17 @@ if (document.readyState === "loading") {
   new DualRangeSlider();
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const slider = new DualRangeSlider();
+  renderCards(slider.minValue, slider.maxValue);
+});
+
+
 // CREATE BUS CARD JAVASCRIPT
 let routesCounter = document.querySelector(".routes-counter");
 
 let noBusText = document.querySelector(".no-bus-text");
-let cardsParentDiv = document.querySelector("#booking-main-data");
+let cardsParentDiv = document.querySelector(".cards-storing-container");
 
 let cardsData = localStorage.getItem("cardsData");
 let parseCardsData = cardsData ? JSON.parse(cardsData) : [];
@@ -165,134 +174,134 @@ let parseCardsData = cardsData ? JSON.parse(cardsData) : [];
 const origin = localStorage.getItem("originCity");
 const destination = localStorage.getItem("destinationCity");
 const date = localStorage.getItem("travelDate");
-let count = 0;
+function renderCards(minFare, maxFare) {
+  cardsParentDiv.innerHTML = ""; // clear old cards
+  let count = 0;
 
-parseCardsData.forEach((card) => {
-  //   console.log("origin:", origin, "card.departure:", card.departure);
-  //   console.log(
-  //     "destination:",
-  //     destination,
-  //     "card.destination:",
-  //     card.destination
-  //   );
-  //   console.log("date:", date, "card.date:", card.date);
+  parseCardsData.forEach((card) => {
+    if (
+      origin === card.departure &&
+      destination === card.destination &&
+      date === card.date &&
+      card.fare >= minFare &&
+      card.fare <= maxFare
+    ) {
+      count++;
+      routesCounter.textContent = `${count} Results`;
+      noBusText.style.display = "none";
 
-  count++;
-  routesCounter.textContent = `${count} Results`;
+      const busCard = document.createElement("div");
+      busCard.classList.add("bus-card");
 
-  if (
-    origin === card.departure &&
-    destination === card.destination &&
-    date === card.date
-  ) {
-    // console.log(count);
+      const busCardContent = document.createElement("div");
+      busCardContent.classList.add("bus-card-content");
 
-    noBusText.style.display = "none";
-    const busCard = document.createElement("div");
-    busCard.classList.add("bus-card");
+      const departureInfo = document.createElement("div");
+      departureInfo.classList.add("departure-info");
 
-    const busCardContent = document.createElement("div");
-    busCardContent.classList.add("bus-card-content");
+      const busIcon = document.createElement("div");
+      busIcon.classList.add("bus-icon");
+      const busImg = document.createElement("img");
+      busImg.src = "bus (2).png";
+      busImg.alt = "";
+      busIcon.appendChild(busImg);
 
-    const departureInfo = document.createElement("div");
-    departureInfo.classList.add("departure-info");
+      const timeLocation = document.createElement("div");
+      timeLocation.classList.add("time-location");
 
-    const busIcon = document.createElement("div");
-    busIcon.classList.add("bus-icon");
-    const busImg = document.createElement("img");
-    busImg.src = "bus (2).png";
-    busImg.alt = "";
-    busIcon.appendChild(busImg);
+      const depTime = document.createElement("div");
+      depTime.classList.add("time");
+      depTime.textContent = card.departureTime;
 
-    const timeLocation = document.createElement("div");
-    timeLocation.classList.add("time-location");
+      const depDate = document.createElement("div");
+      depDate.classList.add("date");
+      depDate.textContent = card.date;
 
-    const depTime = document.createElement("div");
-    depTime.classList.add("time");
-    depTime.textContent = card.departureTime;
+      const depLocation = document.createElement("div");
+      depLocation.classList.add("des-location");
+      depLocation.textContent = card.departure;
 
-    const depDate = document.createElement("div");
-    depDate.classList.add("date");
-    depDate.textContent = card.date;
+      timeLocation.append(depTime, depDate, depLocation);
+      departureInfo.append(busIcon, timeLocation);
 
-    const depLocation = document.createElement("div");
-    depLocation.classList.add("des-location");
-    depLocation.textContent = card.departure;
+      const routeInfo = document.createElement("div");
+      routeInfo.classList.add("route-info");
 
-    timeLocation.append(depTime, depDate, depLocation);
-    departureInfo.append(busIcon, timeLocation);
+      const routeText = document.createElement("div");
+      routeText.classList.add("route-text");
+      routeText.textContent = "Via Motorway";
 
-    const routeInfo = document.createElement("div");
-    routeInfo.classList.add("route-info");
+      const routeLine = document.createElement("div");
+      routeLine.classList.add("route-line");
 
-    const routeText = document.createElement("div");
-    routeText.classList.add("route-text");
-    routeText.textContent = "Via Motorway";
+      const busType = document.createElement("div");
+      busType.classList.add("bus-type");
+      busType.textContent = card.type;
 
-    const routeLine = document.createElement("div");
-    routeLine.classList.add("route-line");
+      routeInfo.append(routeText, routeLine, busType);
 
-    const busType = document.createElement("div");
-    busType.classList.add("bus-type");
-    busType.textContent = card.type;
+      const arrivalInfo = document.createElement("div");
+      arrivalInfo.classList.add("arrival-info");
 
-    routeInfo.append(routeText, routeLine, busType);
+      const arrTime = document.createElement("div");
+      arrTime.classList.add("time");
+      arrTime.textContent = card.destinationTime;
 
-    const arrivalInfo = document.createElement("div");
-    arrivalInfo.classList.add("arrival-info");
+      const arrDate = document.createElement("div");
+      arrDate.classList.add("date");
+      arrDate.textContent = card.date;
 
-    const arrTime = document.createElement("div");
-    arrTime.classList.add("time");
-    arrTime.textContent = card.destinationTime;
+      const arrLocation = document.createElement("div");
+      arrLocation.classList.add("dep-location");
+      arrLocation.textContent = card.destination;
 
-    const arrDate = document.createElement("div");
-    arrDate.classList.add("date");
-    arrDate.textContent = card.date;
+      arrivalInfo.append(arrTime, arrDate, arrLocation);
 
-    const arrLocation = document.createElement("div");
-    arrLocation.classList.add("dep-location");
-    arrLocation.textContent = card.destination;
+      const bookingSection = document.createElement("div");
+      bookingSection.classList.add("booking-section");
 
-    arrivalInfo.append(arrTime, arrDate, arrLocation);
+      const priceSection = document.createElement("div");
+      priceSection.classList.add("price-section");
 
-    const bookingSection = document.createElement("div");
-    bookingSection.classList.add("booking-section");
+      const specialOffer = document.createElement("div");
+      specialOffer.classList.add("special-offer");
+      specialOffer.textContent = "SPECIAL OFFER";
 
-    const priceSection = document.createElement("div");
-    priceSection.classList.add("price-section");
+      const price = document.createElement("div");
+      price.classList.add("price");
+      price.textContent = `PKR ${card.fare}`;
 
-    const specialOffer = document.createElement("div");
-    specialOffer.classList.add("special-offer");
-    specialOffer.textContent = "SPECIAL OFFER";
+      const originalPrice = document.createElement("div");
+      originalPrice.classList.add("original-price");
+      originalPrice.textContent = "PKR 3000";
 
-    const price = document.createElement("div");
-    price.classList.add("price");
-    price.textContent = `PKR ${card.fare}`;
+      priceSection.append(specialOffer, price, originalPrice);
 
-    const originalPrice = document.createElement("div");
-    originalPrice.classList.add("original-price");
-    originalPrice.textContent = "PKR 3000";
+      const bookBtn = document.createElement("button");
+      bookBtn.classList.add("book-btn");
+      bookBtn.setAttribute("onclick", "showSeatModal()");
+      bookBtn.textContent = "Book Now";
 
-    priceSection.append(specialOffer, price, originalPrice);
+      bookingSection.append(priceSection, bookBtn);
 
-    const bookBtn = document.createElement("button");
-    bookBtn.classList.add("book-btn");
-    bookBtn.setAttribute("onclick", "showSeatModal()");
-    bookBtn.textContent = "Book Now";
+      busCardContent.append(
+        departureInfo,
+        routeInfo,
+        arrivalInfo,
+        bookingSection
+      );
+      busCard.appendChild(busCardContent);
 
-    bookingSection.append(priceSection, bookBtn);
+      cardsParentDiv.append(busCard);
+    }
+  });
 
-    busCardContent.append(
-      departureInfo,
-      routeInfo,
-      arrivalInfo,
-      bookingSection
-    );
-    busCard.appendChild(busCardContent);
-
-    cardsParentDiv.append(busCard);
+  if (count === 0) {
+    routesCounter.textContent = "0 Results";
+    noBusText.style.display = "flex";
   }
-});
+}
+
 
 // JS
 
@@ -344,21 +353,23 @@ document.querySelectorAll(".date").forEach((da) => {
   da.innerText = formatDate(date);
 });
 
-document.querySelectorAll(".book-btn").forEach((button) => {
-  button.addEventListener("click", function () {
-    const busCard = this.closest(".bus-card");
-    const priceText = busCard.querySelector(".price")?.innerText || "PKR 0";
-    const price = parseInt(priceText.replace(/[^\d]/g, ""));
+// attach once — safe through re-renders
+cardsParentDiv.addEventListener("click", (e) => {
+  const btn = e.target.closest(".book-btn");
+  if (!btn) return;
 
-    localStorage.setItem("currentPrice", price);
+  const busCard = btn.closest(".bus-card");
+  const priceText = busCard.querySelector(".price")?.innerText || "PKR 0";
+  const price = parseInt(priceText.replace(/[^\d]/g, "")) || 0;
 
-    // const modalPriceElement = document.querySelector(".price");
-    // if (modalPriceElement) {
-    //   modalPriceElement.innerText = `PKR ${price}`;
-    // }
+  // store price and update runtime var
+  localStorage.setItem("currentPrice", price);
+  currentSeatPrice = price;
 
-    showSeatModal();
-  });
+  // optional: if you have a modal element to show per-seat price, set it:
+  // document.getElementById("modalSeatPrice")?.innerText = `PKR ${price}`;
+
+  showSeatModal();
 });
 
 // SEAT MODAL JAVASCRIPT LOGIC
@@ -409,7 +420,8 @@ const closeGenderModal = document.getElementById("closeGenderModal");
 const maleBtn = document.getElementById("maleBtn");
 const femaleBtn = document.getElementById("femaleBtn");
 const seatNo = document.querySelector(".seat-counts p span");
-const seatPrice = document.querySelector(".price");
+let currentSeatPrice = parseInt(localStorage.getItem("currentPrice")) || 0;
+
 const totalPrice = document.querySelector(".total-amount-of-seat p span");
 
 let selectedSeat = null;
@@ -425,10 +437,14 @@ function getSelectedSeats() {
 
 function updateSeatListText(seatsArray) {
   seatNo.innerText = `${seatsArray.join(", ")}`;
-  const pricePerSeat = extractPrice(seatPrice.innerText);
+
+  // prefer runtime var, fallback to localStorage:
+  const pricePerSeat = currentSeatPrice || parseInt(localStorage.getItem("currentPrice")) || 0;
+
   totalPrice.innerText = seatsArray.length * pricePerSeat;
   updateNextButtonState();
 }
+
 
 function updateLocalStorage() {
   localStorage.setItem("seatGenderMap", JSON.stringify(seatGenderMap));
@@ -583,9 +599,8 @@ ModalNextBtn.addEventListener("click", function (e) {
       document.querySelector(".total-amount-of-seat p span")?.innerText || "0";
     const selectedSeats =
       JSON.parse(localStorage.getItem("selectedSeats")) || [];
-    const pricePerSeat = extractPrice(
-      document.querySelector(".price")?.innerText || "PKR 0"
-    );
+  const pricePerSeat = currentSeatPrice || parseInt(localStorage.getItem("currentPrice")) || 0;
+
 
     const bookingInfo = {
       departureCity,
