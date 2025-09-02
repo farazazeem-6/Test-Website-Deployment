@@ -73,8 +73,8 @@ class DualRangeSlider {
     this.minDisplay.textContent = this.minValue;
     this.maxDisplay.textContent = this.maxValue;
 
-    // 🔥 refresh cards based on current slider range
-renderCards(this.minValue, this.maxValue);
+    // refresh cards based on current slider range
+    renderCards(this.minValue, this.maxValue);
   }
 
   handleMouseDown(e, thumb) {
@@ -163,6 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // CREATE BUS CARD JAVASCRIPT
+
 let routesCounter = document.querySelector(".routes-counter");
 
 let noBusText = document.querySelector(".no-bus-text");
@@ -174,8 +175,9 @@ let parseCardsData = cardsData ? JSON.parse(cardsData) : [];
 const origin = localStorage.getItem("originCity");
 const destination = localStorage.getItem("destinationCity");
 const date = localStorage.getItem("travelDate");
+
 function renderCards(minFare, maxFare) {
-  cardsParentDiv.innerHTML = ""; // clear old cards
+  cardsParentDiv.innerHTML = "";
   let count = 0;
 
   parseCardsData.forEach((card) => {
@@ -303,6 +305,172 @@ function renderCards(minFare, maxFare) {
 }
 
 
+
+
+
+//////////////////////////////////////////////
+
+
+// Function to  convert "hh:mm AM/PM" -> minutes since midnight 
+
+
+function timeToMinutes(time12h) {
+  const [time, modifier] = time12h.split(" ");
+  let [hours, minutes] = time.split(":").map(Number);
+
+  if (modifier === "PM" && hours !== 12) {
+    hours += 12;
+  }
+  if (modifier === "AM" && hours === 12) {
+    hours = 0;
+  }
+
+  return hours * 60 + minutes;
+}
+
+
+
+//  RENDER FUNCTION FOR A SINGLE ROUTE CARD
+
+function renderCard(route) {
+  const busCard = document.createElement("div");
+  busCard.classList.add("bus-card");
+
+  busCard.innerHTML = `
+    <div class="bus-card-content">
+      <div class="departure-info">
+        <div class="bus-icon"><img src="bus (2).png" alt="" /></div>
+        <div class="time-location">
+          <div class="time">${route.departureTime}</div>
+          <div class="date">${route.date}</div>
+          <div class="des-location">${route.departure}</div>
+        </div>
+      </div>
+      <div class="route-info">
+        <div class="route-text">Via Motorway</div>
+        <div class="route-line"></div>
+        <div class="bus-type">${route.type}</div>
+      </div>
+      <div class="arrival-info">
+        <div class="time">${route.destinationTime}</div>
+        <div class="date">${route.date}</div>
+        <div class="dep-location">${route.destination}</div>
+      </div>
+      <div class="booking-section">
+        <div class="price-section">
+          <div class="special-offer">SPECIAL OFFER</div>
+          <div class="price">PKR ${route.fare}</div>
+          <div class="original-price">PKR 3000</div>
+        </div>
+        <button class="book-btn" onclick="showSeatModal()">Book Now</button>
+      </div>
+    </div>
+  `;
+
+  cardsParentDiv.appendChild(busCard);
+}
+
+
+const before6Btn = document.getElementById("before-6");
+const after6Btn = document.getElementById("after-6");
+const sixTo12Btn = document.getElementById("six-12");
+const twelveTo6Btn = document.getElementById("twelve-6");
+const resetBtn = document.getElementById("resetButton");
+
+
+//  RENDER LIST OF ROUTES
+
+function renderFilteredRoutes(filtered) {
+  cardsParentDiv.innerHTML = "";
+  if (filtered.length === 0) {
+    routesCounter.textContent = "0 Results";
+    noBusText.style.display = "flex";
+    return;
+  }
+  routesCounter.textContent = `${filtered.length} Results`;
+  noBusText.style.display = "none";
+
+  filtered.forEach(route => renderCard(route));
+}
+
+//  BASE FILTERED ROUTES BY CITY/DATE
+
+let baseFilteredRoutes = parseCardsData.filter(route =>
+  route.departure === origin &&
+  route.destination === destination &&
+  route.date === date
+);
+
+
+//BUTTONS LOGIC HERE
+
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    filterButtons.forEach(b => b.classList.remove("button-active"));
+    btn.classList.add("button-active");
+  });
+});
+
+
+
+// Button 1: 
+
+before6Btn.addEventListener("click", (e) => {
+  e.preventDefault()
+  const filtered = baseFilteredRoutes.filter(route => {
+    const minutes = timeToMinutes(route.departureTime);
+    return minutes < 6 * 60;
+  });
+  renderFilteredRoutes(filtered);
+});
+
+// Button 2:
+
+sixTo12Btn.addEventListener("click", (e) => {
+  e.preventDefault()
+  const filtered = baseFilteredRoutes.filter(route => {
+    const minutes = timeToMinutes(route.departureTime);
+    return minutes >= 6 * 60 && minutes < 12 * 60;
+  });
+  renderFilteredRoutes(filtered);
+});
+
+// Button 3:
+
+twelveTo6Btn.addEventListener("click", (e) => {
+  e.preventDefault()
+  const filtered = baseFilteredRoutes.filter(route => {
+    const minutes = timeToMinutes(route.departureTime);
+    return minutes >= 12 * 60 && minutes < 18 * 60;
+  });
+  renderFilteredRoutes(filtered);
+});
+
+// Button 4:
+
+after6Btn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const filtered = baseFilteredRoutes.filter(route => {
+    const minutes = timeToMinutes(route.departureTime);
+    return minutes >= 6 * 60;
+  });
+
+  renderFilteredRoutes(filtered);
+});
+
+
+
+// Reset
+
+resetBtn.addEventListener("click", (e) => {
+  e.preventDefault()
+  renderFilteredRoutes(baseFilteredRoutes);
+});
+
+
 // JS
 
 const modifySearchBtn = document.querySelector(".right-booking-heading a");
@@ -353,7 +521,7 @@ document.querySelectorAll(".date").forEach((da) => {
   da.innerText = formatDate(date);
 });
 
-// attach once — safe through re-renders
+
 cardsParentDiv.addEventListener("click", (e) => {
   const btn = e.target.closest(".book-btn");
   if (!btn) return;
@@ -362,12 +530,9 @@ cardsParentDiv.addEventListener("click", (e) => {
   const priceText = busCard.querySelector(".price")?.innerText || "PKR 0";
   const price = parseInt(priceText.replace(/[^\d]/g, "")) || 0;
 
-  // store price and update runtime var
+
   localStorage.setItem("currentPrice", price);
   currentSeatPrice = price;
-
-  // optional: if you have a modal element to show per-seat price, set it:
-  // document.getElementById("modalSeatPrice")?.innerText = `PKR ${price}`;
 
   showSeatModal();
 });
@@ -438,7 +603,6 @@ function getSelectedSeats() {
 function updateSeatListText(seatsArray) {
   seatNo.innerText = `${seatsArray.join(", ")}`;
 
-  // prefer runtime var, fallback to localStorage:
   const pricePerSeat = currentSeatPrice || parseInt(localStorage.getItem("currentPrice")) || 0;
 
   totalPrice.innerText = seatsArray.length * pricePerSeat;
@@ -599,7 +763,7 @@ ModalNextBtn.addEventListener("click", function (e) {
       document.querySelector(".total-amount-of-seat p span")?.innerText || "0";
     const selectedSeats =
       JSON.parse(localStorage.getItem("selectedSeats")) || [];
-  const pricePerSeat = currentSeatPrice || parseInt(localStorage.getItem("currentPrice")) || 0;
+    const pricePerSeat = currentSeatPrice || parseInt(localStorage.getItem("currentPrice")) || 0;
 
 
     const bookingInfo = {
@@ -645,3 +809,74 @@ function updateNextButtonState() {
 document.addEventListener("DOMContentLoaded", function () {
   showPage1();
 });
+
+
+
+
+
+// FILTER DROPDOWN JS 
+
+const dropdownContainer = document.querySelector('.filter-dropdown-container');
+const dropdownInput = document.querySelector('.filter-dropdown-input');
+const dropdownArrow = document.querySelector('.filter-dropdown-arrow');
+const dropdownOptions = document.querySelector('.filter-dropdown-options');
+const options = document.querySelectorAll('.filter-dropdown-option');
+
+// Toggle dropdown when input is clicked
+dropdownInput.addEventListener('click', function (e) {
+  e.stopPropagation();
+  toggleDropdown();
+});
+
+// Handle option selection
+options.forEach(option => {
+  option.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const value = this.textContent;
+    dropdownInput.value = value;
+    console.log(value);
+    if (value === 'Low to High') {
+      const ascending = [...parseCardsData].sort((a, b) => a.fare - b.fare);
+      // console.log(ascending);
+      cardsParentDiv.innerHTML = ''
+      ascending.forEach((newcard) => {
+        renderCard(newcard)
+      })
+    }
+    else {
+      const descending = [...parseCardsData].sort((a, b) => b.fare - a.fare);
+      cardsParentDiv.innerHTML = ''
+      descending.forEach((card) => {
+        renderCard(card)
+      })
+    }
+    closeDropdown();
+  });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function (e) {
+  if (!dropdownContainer.contains(e.target)) {
+    closeDropdown();
+  }
+});
+
+function toggleDropdown() {
+  const isOpen = dropdownOptions.classList.contains('show');
+  if (isOpen) {
+    closeDropdown();
+  } else {
+    openDropdown();
+  }
+}
+
+function openDropdown() {
+  dropdownOptions.classList.add('show');
+  dropdownArrow.classList.add('active');
+}
+
+function closeDropdown() {
+  dropdownOptions.classList.remove('show');
+  dropdownArrow.classList.remove('active');
+}
+
