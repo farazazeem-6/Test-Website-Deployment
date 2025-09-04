@@ -1,4 +1,4 @@
-// // Range Slider JS
+// Range Slider JS
 class DualRangeSlider {
   constructor() {
     this.MIN = 500;
@@ -72,8 +72,12 @@ class DualRangeSlider {
     this.minDisplay.textContent = this.minValue;
     this.maxDisplay.textContent = this.maxValue;
 
-    // refresh cards based on current slider range
-    renderCards(this.minValue, this.maxValue);
+    // Update the global filter state and apply all filters
+    filterState.priceRange = {
+      min: this.minValue,
+      max: this.maxValue
+    };
+    applyAllFilters();
   }
 
   handleMouseDown(e, thumb) {
@@ -143,28 +147,16 @@ class DualRangeSlider {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  new DualRangeSlider();
-});
+// ===== CENTRALIZED FILTERING SYSTEM =====
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    new DualRangeSlider();
-  });
-} else {
-  new DualRangeSlider();
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const slider = new DualRangeSlider();
-  renderCards(slider.minValue, slider.maxValue);
-});
-
-
-// CREATE BUS CARD JAVASCRIPT
+// Global filter state
+let filterState = {
+  priceRange: { min: 500, max: 3000 },
+  timeFilter: 'all', // 'all', 'before6', '6to12', '12to18', 'after6'
+  sortOrder: 'none' // 'none', 'lowToHigh', 'highToLow'
+};
 
 let routesCounter = document.querySelector(".routes-counter");
-
 let noBusText = document.querySelector(".no-bus-text");
 let cardsParentDiv = document.querySelector(".cards-storing-container");
 
@@ -175,144 +167,14 @@ const origin = localStorage.getItem("originCity");
 const destination = localStorage.getItem("destinationCity");
 const date = localStorage.getItem("travelDate");
 
-function renderCards(minFare, maxFare) {
-  cardsParentDiv.innerHTML = "";
-  let count = 0;
+// Base filtered routes by city/date (this never changes)
+let baseFilteredRoutes = parseCardsData.filter(route =>
+  route.departure === origin &&
+  route.destination === destination &&
+  route.date === date
+);
 
-  parseCardsData.forEach((card) => {
-    if (
-      origin === card.departure &&
-      destination === card.destination &&
-      date === card.date &&
-      card.fare >= minFare &&
-      card.fare <= maxFare
-    ) {
-      count++;
-      routesCounter.textContent = `${count} Results`;
-      noBusText.style.display = "none";
-
-      const busCard = document.createElement("div");
-      busCard.classList.add("bus-card");
-
-      const busCardContent = document.createElement("div");
-      busCardContent.classList.add("bus-card-content");
-
-      const departureInfo = document.createElement("div");
-      departureInfo.classList.add("departure-info");
-
-      const busIcon = document.createElement("div");
-      busIcon.classList.add("bus-icon");
-      const busImg = document.createElement("img");
-      busImg.src = "bus (2).png";
-      busImg.alt = "";
-      busIcon.appendChild(busImg);
-
-      const timeLocation = document.createElement("div");
-      timeLocation.classList.add("time-location");
-
-      const depTime = document.createElement("div");
-      depTime.classList.add("time");
-      depTime.textContent = card.departureTime;
-
-      const depDate = document.createElement("div");
-      depDate.classList.add("date");
-      depDate.textContent = card.date;
-
-      const depLocation = document.createElement("div");
-      depLocation.classList.add("des-location");
-      depLocation.textContent = card.departure;
-
-      timeLocation.append(depTime, depDate, depLocation);
-      departureInfo.append(busIcon, timeLocation);
-
-      const routeInfo = document.createElement("div");
-      routeInfo.classList.add("route-info");
-
-      const routeText = document.createElement("div");
-      routeText.classList.add("route-text");
-      routeText.textContent = "Via Motorway";
-
-      const routeLine = document.createElement("div");
-      routeLine.classList.add("route-line");
-
-      const busType = document.createElement("div");
-      busType.classList.add("bus-type");
-      busType.textContent = card.type;
-
-      routeInfo.append(routeText, routeLine, busType);
-
-      const arrivalInfo = document.createElement("div");
-      arrivalInfo.classList.add("arrival-info");
-
-      const arrTime = document.createElement("div");
-      arrTime.classList.add("time");
-      arrTime.textContent = card.destinationTime;
-
-      const arrDate = document.createElement("div");
-      arrDate.classList.add("date");
-      arrDate.textContent = card.date;
-
-      const arrLocation = document.createElement("div");
-      arrLocation.classList.add("dep-location");
-      arrLocation.textContent = card.destination;
-
-      arrivalInfo.append(arrTime, arrDate, arrLocation);
-
-      const bookingSection = document.createElement("div");
-      bookingSection.classList.add("booking-section");
-
-      const priceSection = document.createElement("div");
-      priceSection.classList.add("price-section");
-
-      const specialOffer = document.createElement("div");
-      specialOffer.classList.add("special-offer");
-      specialOffer.textContent = "SPECIAL OFFER";
-
-      const price = document.createElement("div");
-      price.classList.add("price");
-      price.textContent = `PKR ${card.fare}`;
-
-      const originalPrice = document.createElement("div");
-      originalPrice.classList.add("original-price");
-      originalPrice.textContent = "PKR 3000";
-
-      priceSection.append(specialOffer, price, originalPrice);
-
-      const bookBtn = document.createElement("button");
-      bookBtn.classList.add("book-btn");
-      bookBtn.setAttribute("onclick", "showSeatModal()");
-      bookBtn.textContent = "Book Now";
-
-      bookingSection.append(priceSection, bookBtn);
-
-      busCardContent.append(
-        departureInfo,
-        routeInfo,
-        arrivalInfo,
-        bookingSection
-      );
-      busCard.appendChild(busCardContent);
-
-      cardsParentDiv.append(busCard);
-    }
-  });
-
-  if (count === 0) {
-    routesCounter.textContent = "0 Results";
-    noBusText.style.display = "flex";
-  }
-}
-
-
-
-
-
-//////////////////////////////////////////////
-
-
-// Function to  convert "hh:mm AM/PM" -> minutes since midnight 
-
-
+// Function to convert "hh:mm AM/PM" -> minutes since midnight 
 function timeToMinutes(time12h) {
   const [time, modifier] = time12h.split(" ");
   let [hours, minutes] = time.split(":").map(Number);
@@ -327,10 +189,64 @@ function timeToMinutes(time12h) {
   return hours * 60 + minutes;
 }
 
+// Apply all filters in sequence
+function applyAllFilters() {
+  let filteredRoutes = [...baseFilteredRoutes];
 
+  // 1. Apply price filter
+  filteredRoutes = filteredRoutes.filter(route => 
+    route.fare >= filterState.priceRange.min && 
+    route.fare <= filterState.priceRange.max
+  );
 
-//  RENDER FUNCTION FOR A SINGLE ROUTE CARD
+  // 2. Apply time filter
+  if (filterState.timeFilter !== 'all') {
+    filteredRoutes = filteredRoutes.filter(route => {
+      const minutes = timeToMinutes(route.departureTime);
+      
+      switch (filterState.timeFilter) {
+        case 'before6':
+          return minutes < 6 * 60;
+        case '6to12':
+          return minutes >= 6 * 60 && minutes < 12 * 60;
+        case '12to18':
+          return minutes >= 12 * 60 && minutes < 18 * 60;
+        case 'after6':
+          return minutes >= 18 * 60;
+        default:
+          return true;
+      }
+    });
+  }
 
+  // 3. Apply sorting
+  if (filterState.sortOrder === 'lowToHigh') {
+    filteredRoutes.sort((a, b) => a.fare - b.fare);
+  } else if (filterState.sortOrder === 'highToLow') {
+    filteredRoutes.sort((a, b) => b.fare - a.fare);
+  }
+
+  // 4. Render the results
+  renderFilteredRoutes(filteredRoutes);
+}
+
+// Render the filtered and sorted routes
+function renderFilteredRoutes(filtered) {
+  cardsParentDiv.innerHTML = "";
+  
+  if (filtered.length === 0) {
+    routesCounter.textContent = "0 Results";
+    noBusText.style.display = "flex";
+    return;
+  }
+  
+  routesCounter.textContent = `${filtered.length} Results`;
+  noBusText.style.display = "none";
+
+  filtered.forEach(route => renderCard(route));
+}
+
+// Render function for a single route card
 function renderCard(route) {
   const busCard = document.createElement("div");
   busCard.classList.add("bus-card");
@@ -369,40 +285,14 @@ function renderCard(route) {
   cardsParentDiv.appendChild(busCard);
 }
 
+// ===== EVENT LISTENERS FOR FILTERS =====
 
+// Time filter buttons
 const before6Btn = document.getElementById("before-6");
 const after6Btn = document.getElementById("after-6");
 const sixTo12Btn = document.getElementById("six-12");
 const twelveTo6Btn = document.getElementById("twelve-6");
 const resetBtn = document.getElementById("resetButton");
-
-
-//  RENDER LIST OF ROUTES
-
-function renderFilteredRoutes(filtered) {
-  cardsParentDiv.innerHTML = "";
-  if (filtered.length === 0) {
-    routesCounter.textContent = "0 Results";
-    noBusText.style.display = "flex";
-    return;
-  }
-  routesCounter.textContent = `${filtered.length} Results`;
-  noBusText.style.display = "none";
-
-  filtered.forEach(route => renderCard(route));
-}
-
-//  BASE FILTERED ROUTES BY CITY/DATE
-
-let baseFilteredRoutes = parseCardsData.filter(route =>
-  route.departure === origin &&
-  route.destination === destination &&
-  route.date === date
-);
-
-
-//BUTTONS LOGIC HERE
-
 
 const filterButtons = document.querySelectorAll(".filter-btn");
 
@@ -413,65 +303,117 @@ filterButtons.forEach(btn => {
   });
 });
 
-
-
-// Button 1: 
-
+// Time filter button events
 before6Btn.addEventListener("click", (e) => {
-  e.preventDefault()
-  const filtered = baseFilteredRoutes.filter(route => {
-    const minutes = timeToMinutes(route.departureTime);
-    return minutes < 6 * 60;
-  });
-  renderFilteredRoutes(filtered);
+  e.preventDefault();
+  filterState.timeFilter = 'before6';
+  applyAllFilters();
 });
-
-// Button 2:
 
 sixTo12Btn.addEventListener("click", (e) => {
-  e.preventDefault()
-  const filtered = baseFilteredRoutes.filter(route => {
-    const minutes = timeToMinutes(route.departureTime);
-    return minutes >= 6 * 60 && minutes < 12 * 60;
-  });
-  renderFilteredRoutes(filtered);
+  e.preventDefault();
+  filterState.timeFilter = '6to12';
+  applyAllFilters();
 });
-
-// Button 3:
 
 twelveTo6Btn.addEventListener("click", (e) => {
-  e.preventDefault()
-  const filtered = baseFilteredRoutes.filter(route => {
-    const minutes = timeToMinutes(route.departureTime);
-    return minutes >= 12 * 60 && minutes < 18 * 60;
-  });
-  renderFilteredRoutes(filtered);
+  e.preventDefault();
+  filterState.timeFilter = '12to18';
+  applyAllFilters();
 });
-
-// Button 4:
 
 after6Btn.addEventListener("click", (e) => {
   e.preventDefault();
-  const filtered = baseFilteredRoutes.filter(route => {
-    const minutes = timeToMinutes(route.departureTime);
-    return minutes >= 6 * 60;
-  });
-
-  renderFilteredRoutes(filtered);
+  filterState.timeFilter = 'after6';
+  applyAllFilters();
 });
 
-
-
-// Reset
-
+// Reset button
 resetBtn.addEventListener("click", (e) => {
-  e.preventDefault()
-  renderFilteredRoutes(baseFilteredRoutes);
+  e.preventDefault();
+  filterState.timeFilter = 'all';
+  applyAllFilters();
 });
 
+// ===== DROPDOWN FILTER =====
 
-// JS
+const dropdownContainer = document.querySelector('.filter-dropdown-container');
+const dropdownInput = document.querySelector('.filter-dropdown-input');
+const dropdownArrow = document.querySelector('.filter-dropdown-arrow');
+const dropdownOptions = document.querySelector('.filter-dropdown-options');
+const options = document.querySelectorAll('.filter-dropdown-option');
 
+// Toggle dropdown when input is clicked
+dropdownInput.addEventListener('click', function (e) {
+  e.stopPropagation();
+  toggleDropdown();
+});
+
+// Handle option selection
+options.forEach(option => {
+  option.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const value = this.textContent;
+    dropdownInput.value = value;
+    
+    if (value === 'Low to High') {
+      filterState.sortOrder = 'lowToHigh';
+    } else if (value === 'High to Low') {
+      filterState.sortOrder = 'highToLow';
+    } else {
+      filterState.sortOrder = 'none';
+    }
+    
+    applyAllFilters();
+    closeDropdown();
+  });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function (e) {
+  if (!dropdownContainer.contains(e.target)) {
+    closeDropdown();
+  }
+});
+
+function toggleDropdown() {
+  const isOpen = dropdownOptions.classList.contains('show');
+  if (isOpen) {
+    closeDropdown();
+  } else {
+    openDropdown();
+  }
+}
+
+function openDropdown() {
+  dropdownOptions.classList.add('show');
+  dropdownArrow.classList.add('active');
+}
+
+function closeDropdown() {
+  dropdownOptions.classList.remove('show');
+  dropdownArrow.classList.remove('active');
+}
+
+// ===== INITIALIZATION =====
+
+document.addEventListener("DOMContentLoaded", () => {
+  const slider = new DualRangeSlider();
+  // Initial render with all filters
+  applyAllFilters();
+});
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    new DualRangeSlider();
+  });
+} else {
+  new DualRangeSlider();
+}
+
+// ===== REST OF YOUR EXISTING CODE (unchanged) =====
+
+// JS for modify search button
 const modifySearchBtn = document.querySelector(".right-booking-heading a");
 const targetElement = document.querySelector(".search-form");
 
@@ -497,14 +439,6 @@ if (headingTitle && headingDate) {
   headingDate.innerText = formatDate(date);
 }
 
-// function capitalizeWords(str) {
-//     return str
-//         .toLowerCase()
-//         .split(' ')
-//         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-//         .join(' ');
-// }
-
 const formattedOrigin = origin;
 const formattedDestination = destination;
 
@@ -520,7 +454,6 @@ document.querySelectorAll(".date").forEach((da) => {
   da.innerText = formatDate(date);
 });
 
-
 cardsParentDiv.addEventListener("click", (e) => {
   const btn = e.target.closest(".book-btn");
   if (!btn) return;
@@ -529,7 +462,6 @@ cardsParentDiv.addEventListener("click", (e) => {
   const priceText = busCard.querySelector(".price")?.innerText || "PKR 0";
   const price = parseInt(priceText.replace(/[^\d]/g, "")) || 0;
 
-
   localStorage.setItem("currentPrice", price);
   currentSeatPrice = price;
 
@@ -537,7 +469,6 @@ cardsParentDiv.addEventListener("click", (e) => {
 });
 
 // SEAT MODAL JAVASCRIPT LOGIC
-
 document.addEventListener("DOMContentLoaded", () => {
   const seatModal = document.querySelector(".seat-modal-overlay");
   const seatcloseIcon = document.querySelector(".modal-cross-icon img");
@@ -549,7 +480,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = "auto";
       resetUserSelectedSeats();
     });
-  } else {
   }
 });
 
@@ -608,7 +538,6 @@ function updateSeatListText(seatsArray) {
   updateNextButtonState();
 }
 
-
 function updateLocalStorage() {
   localStorage.setItem("seatGenderMap", JSON.stringify(seatGenderMap));
 }
@@ -621,7 +550,7 @@ seats.forEach((seat) => {
 
     if (bg === "rgb(255, 255, 255)") {
       if (selectedSeats.length >= 5) {
-        alert("You canot select more than 5 seats.");
+        alert("You cannot select more than 5 seats.");
         return;
       }
       selectedSeat = seat;
@@ -752,8 +681,6 @@ ModalNextBtn.addEventListener("click", function (e) {
     }
   } else if (currentPage === 2) {
     const departureCity = formattedOrigin;
-    // console.log(departureCity);
-
     const destinationCity = formattedDestination;
     const travelDate = localStorage.getItem("travelDate") || "";
     const selectedTerminal =
@@ -763,7 +690,6 @@ ModalNextBtn.addEventListener("click", function (e) {
     const selectedSeats =
       JSON.parse(localStorage.getItem("selectedSeats")) || [];
     const pricePerSeat = currentSeatPrice || parseInt(localStorage.getItem("currentPrice")) || 0;
-
 
     const bookingInfo = {
       departureCity,
@@ -805,77 +731,7 @@ function updateNextButtonState() {
     ModalNextBtn.style.cursor = "pointer";
   }
 }
+
 document.addEventListener("DOMContentLoaded", function () {
   showPage1();
 });
-
-
-
-
-
-// FILTER DROPDOWN JS 
-
-const dropdownContainer = document.querySelector('.filter-dropdown-container');
-const dropdownInput = document.querySelector('.filter-dropdown-input');
-const dropdownArrow = document.querySelector('.filter-dropdown-arrow');
-const dropdownOptions = document.querySelector('.filter-dropdown-options');
-const options = document.querySelectorAll('.filter-dropdown-option');
-
-// Toggle dropdown when input is clicked
-dropdownInput.addEventListener('click', function (e) {
-  e.stopPropagation();
-  toggleDropdown();
-});
-
-// Handle option selection
-options.forEach(option => {
-  option.addEventListener('click', function (e) {
-    e.stopPropagation();
-    const value = this.textContent;
-    dropdownInput.value = value;
-    console.log(value);
-    if (value === 'Low to High') {
-      const ascending = [...parseCardsData].sort((a, b) => a.fare - b.fare);
-      // console.log(ascending);
-      cardsParentDiv.innerHTML = ''
-      ascending.forEach((newcard) => {
-        renderCard(newcard)
-      })
-    }
-    else {
-      const descending = [...parseCardsData].sort((a, b) => b.fare - a.fare);
-      cardsParentDiv.innerHTML = ''
-      descending.forEach((card) => {
-        renderCard(card)
-      })
-    }
-    closeDropdown();
-  });
-});
-
-// Close dropdown when clicking outside
-document.addEventListener('click', function (e) {
-  if (!dropdownContainer.contains(e.target)) {
-    closeDropdown();
-  }
-});
-
-function toggleDropdown() {
-  const isOpen = dropdownOptions.classList.contains('show');
-  if (isOpen) {
-    closeDropdown();
-  } else {
-    openDropdown();
-  }
-}
-
-function openDropdown() {
-  dropdownOptions.classList.add('show');
-  dropdownArrow.classList.add('active');
-}
-
-function closeDropdown() {
-  dropdownOptions.classList.remove('show');
-  dropdownArrow.classList.remove('active');
-}
-
