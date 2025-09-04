@@ -1,5 +1,4 @@
 // // Range Slider JS
-
 class DualRangeSlider {
   constructor() {
     this.MIN = 500;
